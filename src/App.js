@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import {React, useState, useEffect} from 'react';
 
-function App() {
+const App = (props) => {
+
+  const [nom, setNom] = useState("");
+
+  const [prenom, setPrenom] = useState("");
+
+  useEffect(() => {
+      console.log("useEffect 2 ...")
+  }, [nom])
+
+  useEffect(() => {
+      console.log("useEffect 1 ...")
+  }, [])
+
+  const handleChangeNom = (evt) => {
+    setNom(evt.target.value);
+
+  }
+
+  const handleChangePrenom = (evt) => {
+    setPrenom(evt.target.value);
+
+  }
+
+  console.log("render App...");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+
+          <input type="text" placeholder='Votre Nom' value={nom} onChange={handleChangeNom}/>
+
+          <input type="text" placeholder='Votre Prenom' value={prenom} onChange={handleChangePrenom}/>
+          
+          <div>
+
+             Bonjour {nom} {prenom}
+
+          </div>
+
+      </div>
   );
 }
 
-export default App;
+export default App ;
